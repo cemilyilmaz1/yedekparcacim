@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="../../../assets/logo.png" style="height: 60%;width:60%;" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="kullanici/favoriler">Favoriler <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="kullanici/listele">Listele</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Çıkış</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+
+    <div class="col-md-5 form-group">
+        <select name="marka" class="form-control" #marka>
+            <option>Mercedes</option>
+            <option>Bmw</option>
+            <option>Audi</option>
+            <option>Fiat</option>
+            <option>Tofaş</option>
+            <option>Citroen</option>
+            <option>Ford</option>
+            <option>Hyundai</option>
+            <option>Toyota</option>
+            <option>Pegout</option>
+        </select>
+    </div>
+
+    <div class="col-md-5 form-group">
+        <button class="btn btn-primary btn-block" (click)="KayitListeleFiltreli(marka.value)"> Ara </button>
+    </div>
+    <div class="col-md-5 form-group">
+        <button class="btn btn-success btn-block" (click)="KayitListele()"> Tümünü Listele </button>
+    </div>
+    <div class="card col-md-3 float-left ml-3 mt-4" style="background-color: lemonchiffon;"
+        *ngFor="let item of kayitlar">
+        <div class="card-header bg-danger text-white text-center">
+            <h5>{{item.aracmarka}}</h5>
+        </div>
+        <div class="card-body">
+            {{item.marka}}
+            <hr>
+            {{item.urunisim}}
+            <hr>
+            Durum: {{item.durum}} <br>
+            Fiyat: {{item.ucret}} <br>
+            Adres: Adana/Yüreğir <br>
+            İşletme Adı:{{item.isletmeisim}} <br>
+            İletişim: {{item.isletmeTel}} <br>
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-dark btn-block" (click)="
+                this.seckayit.isletmeid=item.isletmeid;
+                this.seckayit.urunisim=item.urunisim;
+                this.seckayit.marka=item.marka;
+                this.seckayit.durum=item.durum;
+                this.seckayit.ucret=item.ucret;
+                this.seckayit.aracmarka=item.aracmarka;
+                this.seckayit.isletmeisim=item.isletmeisim;
+                this.seckayit.isletmeTel=item.isletmeTel;
+                this.seckayit.isletmeAdres=item.isletmeAdres;
+                this.favoriEkle();
+                ">Favorilere Ekle</button>
+                <h6 class="text-right mt-3"> 09.01.2021</h6>
+            </div>
+        </div>
+    </div>
+</div>
